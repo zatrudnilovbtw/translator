@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рабочее пространство переводчика</title>
+    <link rel="stylesheet" href="../static/css/style.css"></head>
+<body>
+    <div class="container">
+        <h1>Переводчик</h1>
+        <form action="{{ url_for('translate') }}" method="post">
+            <label for="source_lang">Исходный язык:</label>
+            <select name="source_lang" id="source_lang">
+                <option value="ru">Русский</option>
+                <option value="en">Английский</option>
+            </select>
+            <label for="target_lang">Целевой язык:</label>
+            <select name="target_lang" id="target_lang">
+                <option value="en">Английский</option>
+                <option value="ru">Русский</option>
+            </select>
+            <textarea name="source_text" placeholder="Введите текст для перевода"></textarea>
+            <button type="submit">Перевести</button>
+        </form>
+        <div id="translated_text">
+            {% if translated_text %}
+                <h2>Переведенный текст:</h2>
+                <p>{{ translated_text }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
